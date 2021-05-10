@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Hackaton Project</title>
+
+    <link rel="stylesheet" href="/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.1/dist/aframe-extras.min.js"></script>
+
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <div id="cover">
+      <button class="ready" id="readybutton" onclick="expready()">
+        My body is ready!
+      </button>
+    </div>
+    <div id="logo">
+      <img src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FLogoSalsa2.png?v=1620509578541">
+    </div>
+    <div id="stepindicator">
+      <img id="step1" class="indicator" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FStep1.png">
+      <img id="step2" class="indicator" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FStep2.png">
+      <img id="dance" class="indicator" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FDance.png">
+    </div>
+    <div id="splash">
+      <p class="instructions">
+        Select an environment. You can choose to enter AR (Android) or VR mode later.
+      </p>
+      <button class="optionbtn" id="arexp" onclick="goar()">
+        Real space
+      </button>
+      <button class="optionbtn" id="vrexp" onclick="govr()">
+        Virtual space
+      </button>
+    </div>
+    <video id="camera-stream" crossorigin="anonymous" autoplay="" muted="" playsinline=""></video>
+    <a-scene error-message voice-command
+             vr-mode-ui="enabled: true" ar="enabled: true"
+             renderer="colorManagement: true;"
+             loading-screen="enabled: false"
+             light="defaultLightsEnabled: false"
+             device-orientation-permission-ui="deviceMotionMessage: This immersive experience requires access to your device motion sensors for extra sauce.; enabled: true;
+                                               mobileDesktopMessage: You can use WASD to move and hold click to look around. The mobile version is way saucier!"
+             background="color: #221D1E; transparent: true">
+      <a-assets timeout="20000"> 
+        <a-asset-item id="Model" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FAnimations15.glb"></a-asset-item>
+        <a-asset-item id="Room" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRoomWallCeiling.glb"></a-asset-item>
+        <a-asset-item id="Floor" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FFloor.glb"></a-asset-item>
+        <img id="Commands" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FCommandList.png?v=1620531384238" crossorigin="anonymous">
+        <audio id="Music" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FMusic.mp3?v=1620451921210"
+               crossorigin="anonymous"></audio>
+        <audio id="Tutorial" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FTutorial.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Stuff" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FPanel.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="One" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FOne.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Two" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FTwo.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Three" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FThree.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Four" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FFour.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Start1" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FFollowMe.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Start2" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FFollowMe2.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="LetsGo" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FLetsGo.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random1" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom1.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random2" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom2.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random3" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom3.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random4" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom4.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random5" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom5.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random6" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom6.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random7" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom7.mp3"
+               crossorigin="anonymous"></audio>
+        <audio id="Random8" src="https://cdn.glitch.com/fc2dd1c7-2915-439e-810d-76423eefc24c%2FRandom8.mp3"
+               crossorigin="anonymous"></audio>
+      </a-assets>
+      
+      <a-sound id="music" sound="src: #Music; loop: true; positional: false; volume: .4"></a-sound> 
+      
+      <a-entity id="model" gltf-model="#Model" fix scale=".85 .85 .85" rotation="0 -3 0" position="0 0 -1.5" animation-mixer="clip: SalsaP3; loop: repeat; repetitions: infinity"
+                shadow>
+        <a-sound id="tutorial" sound="src: #Tutorial; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="stuff" sound="src: #Stuff; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="one" sound="src: #One; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="two" sound="src: #Two; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="three" sound="src: #Three; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="four" sound="src: #Four; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="start1" sound="src: #Start1; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="start2" sound="src: #Start2; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+        <a-sound id="letsgo" sound="src: #LetsGo; volume: 2; rolloffFactor: .5;" position="0 1.6 0"></a-sound>
+
+        <a-sound id="random1" sound="src: #Random1; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random2" sound="src: #Random2; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random3" sound="src: #Random3; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random4" sound="src: #Random4; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random5" sound="src: #Random5; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random6" sound="src: #Random6; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random7" sound="src: #Random7; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+        <a-sound id="random8" sound="src: #Random8; volume: 2; rolloffFactor: .5" position="0 1.6 0"></a-sound>
+      </a-entity>
+      
+      <a-entity id="Studio" visible="false">
+        <a-entity id="studio" gltf-model="#Room" scale="1.5 1.5 1.5"></a-entity>
+        <a-entity id="floor" gltf-model="#Floor" scale="1.5 1.5 1.5" shadow="cast:  false"></a-entity>
+      </a-entity>
+      
+      <a-entity id="defaultlights">
+        <a-entity light="color: #BBB; type: ambient" data-aframe-default-light="" aframe-injected=""></a-entity>
+        <a-entity light="intensity: 0.6; castShadow: true" position="-0.5 1 1" data-aframe-default-light="" aframe-injected=""></a-entity>
+      </a-entity>
+      
+      <a-entity id="studiolights" visible="false">
+        <a-entity id="studiolights1" visible="true" light="color: #fac989; type: spot; castShadow: true; angle: 180" position="-3.86 1.94 -6" rotation="0 100 0"></a-entity>
+        <a-entity id="studiolights2" visible="true" light="color: #fac989; type: spot; castShadow: true; angle: 180" position="3.86 1.94 -6" rotation="0 -100 0"></a-entity>
+        <a-entity id="studiolights3" visible="true" light="color: #ffefcc; intensity: 0.2; type: ambient"></a-entity>
+        <a-entity id="studiolights4" visible="true" light="intensity: 0.2; type: point; castShadow: true" position="-3.5 2 -7.25"></a-entity>
+        <a-entity id="studiolights5" visible="true" light="intensity: 0.2; type: point; castShadow: true" position="3.5 2 -7.25"></a-entity>
+      </a-entity>
+     
+      <a-camera id="camera" position="0 1.2 0">
+        <a-entity
+          fix
+          id="text-object"
+          text="value: Try saying: 'Lorenzo, do stuff'; color: #FAFAFA; width: 5; align: center; anchor: align"
+          position="0 -.28 -.5"
+          scale=".085 .085 .085"
+          visible="false">
+        </a-entity>      
+      </a-camera>
+      <a-entity id="List" geometry="primitive: plane" material="src: #Commands; transparent: true; alphaTest: .5; opacity: .8" 
+                position="-5 1.8 -6" rotation="-2 40 0" scale="0 0 0"></a-entity>
+    </a-scene>
+    <script>
+      AFRAME.registerComponent("fix", {
+  init() {
+    const { el } = this;
+    el.addEventListener("model-loaded", e => {
+      const texture = el.getObject3D("mesh");
+      if (!texture) {
+        return;
+      }
+      texture.traverse(node => {
+        if (node.isMesh) {
+          node.frustumCulled = false;
+        }
+      });
+    });
+  }
+});
+    </script>
+    <style>
+      .a-dialog {
+        color: #fff;
+        text-align: center;
+        background-color: #8e1212;
+        border-radius: 15px;
+      }
+
+      .a-dialog-allow-button {
+        background-color: #ff551d;
+        color: #fff;
+        border-radius: 15px;
+      }
+
+      .a-dialog-deny-button {
+        background-color: #635b50;
+        color: #fff;
+        border-radius: 15px;
+      }
+
+      .a-dialog-ok-button {
+         background-color: #ff551d;
+         color: #fff;
+         border-radius: 15px;
+       }
+    </style>
+  </body>
+</html>
